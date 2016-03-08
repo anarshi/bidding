@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gwiusa_Bidding>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Gwiusa_Bidding>
+    </modules>
+</config>

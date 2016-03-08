@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gwiusa_Bidding>
+            <version>0.1.0</version>
+        </Gwiusa_Bidding>
+    </modules>
+    <global>
+        <models>
+            <gwibidding>
+                <class>Gwiusa_Bidding_Model</class>
+                <resourceModel>gwibidding_bidding_mysql4</resourceModel>
+            </gwibidding>
+            <gwibidding_bidding_mysql4>
+                <class>Gwiusa_Bidding_Model_Mysql4</class>
+                <entities>
+                    <bidding>
+                        <table>gwiusa_bidding</table>
+                    </bidding>
+                </entities>
+            </gwibidding_bidding_mysql4>
+        </models>
+
+        <helpers>
+            <gwibidding>
+                <class>Gwiusa_Bidding_Helper</class>
+            </gwibidding>
+        </helpers>
+
+        <resources>
+            <gwibidding_setup>
+                <setup>
+                    <module>Gwiusa_Bidding</module>
+                    <class>Gwiusa_Bidding_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </gwibidding_setup>
+
+            <gwibidding_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </gwibidding_write>
+
+            <gwibidding_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </gwibidding_read>
+        </resources>
+
+        <blocks>
+            <gwibidding>
+                <class>Gwiusa_Bidding_Block</class>
+            </gwibidding>
+        </blocks>
+
+        <template>
+            <email>
+                <notifybid module="gwibidding">
+                    <label>seller notify to buyer</label>
+                    <file>gwiusa/bidding/send_bidding_mail.html</file>
+                    <type>html</type>
+                </notifybid>
+
+                <approvebid module="gwibidding">
+                    <label>seller approve the bid</label>
+                    <file>gwiusa/bidding/approved_bidding_mail.html</file>
+                    <type>html</type>
+                </approvebid>
+
+                <denybid module="gwibidding">
+                    <label>seller deny the bid</label>
+                    <file>gwiusa/bidding/deny_bidding_mail.html</file>
+                    <type>html</type>
+                </denybid>
+
+                <counterbid module="gwibidding">
+                    <label>seller counter offer to the bid</label>
+                    <file>gwiusa/bidding/counter_bidding_mail.html</file>
+                    <type>html</type>
+                </counterbid>
+
+                <notificationadmin module="gwibidding">
+                    <label>seller counter offer to the bid</label>
+                    <file>gwiusa/bidding/notification_bidding_mail.html</file>
+                    <type>html</type>
+                </notificationadmin>
+            </email>
+        </template>
+    </global>
+    <frontend>
+        <routers>
+            <gwibidding>
+                <use>standard</use>
+                <args>
+                    <module>Gwiusa_Bidding</module>
+                    <frontName>gwibidding</frontName>
+                </args>
+            </gwibidding>
+        </routers>
+
+        <layout>
+            <updates>
+                <gwibidding>
+                    <file>gwibidding.xml</file>
+                </gwibidding>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <gwibidding before="Mage_Adminhtml">Gwiusa_Bidding_Adminhtml</gwibidding>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <gwibidding>
+                    <file>gwibidding.xml</file>
+                </gwibidding>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

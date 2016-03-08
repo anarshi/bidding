@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+    </default>
+
+    <gwibidding_index_index>
+        <reference name="head">
+            <action method="addCss">
+                <name>jqueryui/css/ui-lightness/jquery-ui-1.9.2.custom.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>jqueryui/js/jquery-ui-1.9.2.custom.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/jquery.validate.min.js</name>
+            </action>
+        </reference>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="gwibidding/gwibidding" name="gwibidding" as="gwibidding" template="gwiusa/bidding/bidding_form.phtml" />
+        </reference>
+    </gwibidding_index_index>
+
+    <gwibidding_index_success>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="core/template" name="bidding_success" as="bidding_success" template="gwiusa/bidding/success.phtml" />
+        </reference>
+    </gwibidding_index_success>
+    
+    <gwibidding_index_thankyou>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="core/template" name="bidding_success" as="bidding_success" template="gwiusa/bidding/thankyou.phtml" />
+        </reference>
+    </gwibidding_index_thankyou>
+
+    <gwibidding_index_details>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+
+        <reference name="content">
+            <block type="gwibidding/gwibidding" name="counter_offer" as="counter_offer" template="gwiusa/bidding/countoffer.phtml" />
+        </reference>
+    </gwibidding_index_details>
+
+    <gwibidding_index_history>
+        <update handle="customer_account" />
+        <reference name="my.account.wrapper">
+            <block type="gwibidding/gwibidding" name="gwiusa_bidding_content" template="gwiusa/bidding/history.phtml" />
+        </reference>
+    </gwibidding_index_history>
+</layout>

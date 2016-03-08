@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_bidding_index>
+        <reference name="content">
+            <block type="gwibidding/adminhtml_bidding" name="biddings" />
+        </reference>
+    </adminhtml_bidding_index>
+        
+    <adminhtml_bidding_edit>
+        <reference name="content">
+            <block type="gwibidding/adminhtml_bidding_edit" name="biddings" />
+        </reference>
+    </adminhtml_bidding_edit>
+</layout>

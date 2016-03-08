@@ -1,0 +1,36 @@
+<?php
+    $biddings = $this->getCollection();
+?>
+<h2> Your Bidding History</h2>
+<hr>
+<?php if (count($biddings) > 0) { ?>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="font-weight: bold;font-size:1.2em">Bidding Ref#</th>
+                <th style="font-weight: bold;font-size:1.2em">Product Name</th>
+                <th style="font-weight: bold;font-size:1.2em">Quantity</th>
+                <th style="font-weight: bold;font-size:1.2em">Unit Price</th>
+                <th style="font-weight: bold;font-size:1.2em">Expect Shipping Date</th>
+                <th style="font-weight: bold;font-size:1.2em">Bidding Date</th>
+                <th style="font-weight: bold;font-size:1.2em">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            foreach($biddings as $bid) {
+                $id = $bid->getData('customer_id');
+                $customer = Mage::getModel('customer/customer')->load($id);
+                $bid_id = $bid->getData('bidding_id');
+                $bid_id = 9000000 + $bid_id;
+                $name = $customer->getName();
+                echo "<tr><td>". $bid_id . "</td><td>" . $bid->getData('product_name')."</td><td>" . $bid->getData('qty') . "</td><td>" . $bid->getData('unit_price') . "</td><td>" . $bid->getData('expect_date') . "</td><td>" . $bid->getData('created_at') . "</td><td>". $bid->getData('status') .  "</td></tr>";
+            }
+        ?>
+        </tbody>
+    </table>
+</div>
+<?php } else { ?>
+    <p>You don't have any bid right now, please bid for good price</p>
+<?php } ?>

@@ -1,0 +1,74 @@
+<?php
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+    $customerId = $customer->getId();
+    $productId = $this->getRequest()->getParam('productId');
+    $product = Mage::getModel('catalog/product')->load($productId);
+    $productname = $product->getName();
+?>
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>You are bidding product: <?php echo $productname; ?></h3>
+            <p style="background-color:#3276b1; color: #fff; font-size: 150%; text-align: center; padding: 5px;">
+                Please enter your bid and we will back to you within 1 hour (For $50,000+ inquiry we may need to take 1-2 business days).
+            </p>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" role="form" method="POST" action="/gwibidding/index/newPost">
+                <input type="hidden" name="customerId" value="<?php echo $customerId; ?>">
+                <input type="hidden" name="productId" value="<?php echo $productId; ?>">
+
+                <div class="form-group">
+                    <label for="qty" style="font-size: 120%" class="col-md-3 control-label">Qty Needed:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="qty" id="qty" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price" style="font-size: 120%" class="col-md-3 control-label">Price:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="price" id="price" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="expectdate" style="font-size: 120%" class="col-md-3 control-label">Need Material By:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="expectdate" id="expectdate" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="self_pick" style="font-size: 120%" class="col-md-3 control-label">Self Pickup:</label>
+                    <div class="col-md-8">
+                        <input type="checkbox" class="" name="self_pick" id="self_pick">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <p style="background-color: #f00; color: #fff; border: 1px solid #000; font-size: 1.2em; font-weight: bold; padding:5px; text-align: center">By submit this bid you are commit to place the order if we can meet with the term</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-7 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check-square"></i>&nbsp; SUBMIT BID
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function(){
+        $j('#expectdate').datepicker({
+            dateFormat: "yy-mm-dd" 
+        });
+    });
+</script>

@@ -1,0 +1,47 @@
+<?php
+    $bidding = $this->getBidding();
+    $bidding_id = $bidding->getData('bidding_id');
+    $product_id = $bidding->getData('product_id');
+
+    $product = Mage::getModel('catalog/product')->load($product_id);
+    $uom =  $product->getResource()->getAttribute('uom')->getFrontend()->getValue($product); 
+?>
+
+<div class="container">
+
+<div class="row">
+    <div class="col-md-10">
+        <p style="font-size: 1.2em">
+        Sorry! We are unable to find a bidder to match your request below(Ref# <?php echo 9000000 + $bidding_id; ?>)
+        </p>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+<table class="table">
+    <thead>
+    <tr>
+        <th style="font-weight: bold; font-size: 1.3em">Product Name</th>
+        <th style="font-weight: bold; font-size: 1.3em">Unit Price($)</th>
+        <th style="font-weight: bold; font-size: 1.3em">Qty(<?php echo $uom; ?>)</th>
+        <th style="font-weight: bold; font-size: 1.3em">Expected Shipping Date</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo $bidding->getData('product_name'); ?></td>
+            <td><span style="text-decoration: line-through; text-decoration-color: #E18728">$<?php echo $bidding->getData('unit_price'); ?></span><span style="font-size: 1.4em;color:red">$<?php echo $bidding->getData('unit_price_offerred');?></span></td>
+            <td><?php echo $bidding->getData('qty'); ?></td>
+            <th><?php echo $bidding->getData('expect_date'); ?></td>
+        </tr>
+    </tbody>
+</table>
+<form action="/gwibidding/index/process" method="POST">
+    <input type="hidden" name="bidding_id" id="bidding_id" value="<?php echo $bidding_id; ?>" >
+    <input type="submit" class="btn btn-success" name="accept" value="Accept">
+    <input type="submit" class="btn btn-danger" name="decline" value="Decline">
+</form>
+</div>
+</div>
+</div>
